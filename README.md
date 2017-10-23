@@ -1,6 +1,9 @@
 # Linode-Dynamic-DNS
 Dynamic script to update Linode's Managed DNS from a MikroTik router.
 
+
+## Add the following script to the Scripts on the router.
+
 ```
 # Linode automatic Dynamic DNS update
 
@@ -82,4 +85,11 @@ Dynamic script to update Linode's Managed DNS from a MikroTik router.
 } else={
   :log info "Linode: $inetinterface is not currently running, so therefore will not update."
 }
+```
+## Then, Setup the Recurring Update
+
+```
+/system scheduler add comment="Update Linode DDNS" disabled=no interval=5m \
+name="Update Linode DDNS" on-event=<script name> policy=read,write,test
+
 ```
