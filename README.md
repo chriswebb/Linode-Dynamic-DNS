@@ -58,9 +58,8 @@ Dynamic script to update Linode's Managed DNS from a MikroTik router.
 
     if ( [:len $linodeDomainIdArray] > 1 && [:len $linodeDomainIdArray] = [:len $linodeDomainIdArray]) do={
       :for i from=0 to=( [:len $linodeDomainIdArray] - 1) do={
-        :local linodeDomainId [:pick $linodeDomainIdArray 0 $i]
-        :local linodeResourceId [:pick $linodeResourceIdArray 0 $i]
-
+        :local linodeDomainId [:pick $linodeDomainIdArray $i]
+        :local linodeResourceId [:pick $linodeResourceIdArray $i]
         :log info "Linode: Sending update for domain id $linodeDomainId and resource id $linodeResourceId"
         /tool fetch url=($url . "&domainid=$linodeDomainId&resourceid=$linodeResourceId") mode=http 
         :log info "Linode: Domain id $linodeDomainId and resource id $linodeResourceId updated on Linode with IP $linodeCurrentIP"
@@ -70,7 +69,6 @@ Dynamic script to update Linode's Managed DNS from a MikroTik router.
       if ( [:len $linodeDomainIdArray] = 1) do={
         :local linodeDomainId $linodeDomainIds
         :foreach linodeResourceId in=$linodeResourceIdArray do={
-
           :log info "Linode: Sending update for domain id $linodeDomainId and resource id $linodeResourceId"
           /tool fetch url=($url . "&domainid=$linodeDomainId&resourceid=$linodeResourceId") mode=http 
           :log info "Linode: Domain id $linodeDomainId and resource id $linodeResourceId updated on Linode with IP $linodeCurrentIP"
