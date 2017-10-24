@@ -16,7 +16,7 @@
 # https://api.linode.com/?api_key=your-api-key&&api_action=domain.resource.list&domainid=your-domain-id
 # To specify multiple resource ids, separate them with commas. 
 #   * If there is more than one domain id, these resource ids need to be the same length as the domain ids.
-#   * Otherwise, it tries to set the resources for 
+#   * Otherwise, it tries to set the resources for the one domain id.
 :local linodeResourceIds "your-resource-ids"
 
 # Change to the name of interface that gets the dynamic IP address
